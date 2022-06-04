@@ -14,6 +14,11 @@ while p <= 10:
 heights = {0: 0, 1: 1, 2: 2, 3: 2, 4: 3, 5: 3, 10: 3, 11: 4}
 n_nodes = {0: 0, 1: 1, 2: 2, 3: 3, 4: 3, 5: 4, 10: 7, 11: 4}
 n_leaves = {0: 1, 1: 2, 2: 3, 3: 4, 4: 4, 5: 5, 10: 8, 11: 5}
+tree_9 = '''
+   ┌───┴───┐   
+ ┌─┴─┐   ┌─┴─┐ 
+┌┴┐ ┌┴┐ ┌┴┐    
+'''
 
 
 class AncestreeTestCase(unittest.TestCase):
@@ -23,7 +28,7 @@ class AncestreeTestCase(unittest.TestCase):
 
     def test_split(self):
         for merger in mergers:
-            self.assertEqual(merger, full_binary.split_tree(mergers[merger]), 'Splitting '+str(mergers[merger]))
+            self.assertEqual(merger, full_binary.split_tree(mergers[merger]), 'Splitting ' + str(mergers[merger]))
 
     def test_height(self):
         for tree in heights:
@@ -36,6 +41,9 @@ class AncestreeTestCase(unittest.TestCase):
     def test_n_leaves(self):
         for tree in n_leaves:
             self.assertEqual(n_leaves[tree], full_binary.n_leaves_in_tree(tree))
+
+    def test_diagram(self):
+        self.assertEqual(tree_9, full_binary.show_tree(9))
 
 
 if __name__ == '__main__':
