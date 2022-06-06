@@ -52,15 +52,6 @@ def height_of_tree_recursive(tree: int):
         return max(height_of_tree(m), height_of_tree(n)) + 1
 
 
-def n_nodes_in_tree(tree: int):
-    # n_mergers
-    if tree == 0:
-        return 0
-    else:
-        m, n = split_tree(tree)
-        return n_nodes_in_tree(m) + n_nodes_in_tree(n) + 1
-
-
 def n_leaves_in_tree(tree: int):
     # n_natal
     if tree == 0:
@@ -70,9 +61,14 @@ def n_leaves_in_tree(tree: int):
         return n_leaves_in_tree(m) + n_leaves_in_tree(n)
 
 
+def n_nodes_in_tree(tree: int):
+    # n_mergers
+    return n_leaves_in_tree(tree) - 1
+
+
 def n_vertices_in_tree(tree: int):
     # n_objects
-    return n_nodes_in_tree(tree) + n_leaves_in_tree(tree)
+    return 2*n_leaves_in_tree(tree) - 1
 
 
 def show_tree(tree: int):
