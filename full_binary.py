@@ -70,6 +70,11 @@ def n_leaves_in_tree(tree: int):
         return n_leaves_in_tree(m) + n_leaves_in_tree(n)
 
 
+def n_vertices_in_tree(tree: int):
+    # n_objects
+    return n_nodes_in_tree(tree) + n_leaves_in_tree(tree)
+
+
 def show_tree(tree: int):
     if tree == 0:
         return '│'
