@@ -49,7 +49,9 @@ def height_of_tree_recursive(tree: int):
         return 0
     else:
         m, n = split_tree(tree)
-        return max(height_of_tree(m), height_of_tree(n)) + 1
+        # return max(height_of_tree(m), height_of_tree(n)) + 1
+        # max(h(m),h(n)) = h(m) as m>=n and h is non-decreasing
+        return height_of_tree(m) + 1
 
 
 def n_leaves_in_tree(tree: int):
@@ -95,3 +97,9 @@ def show_tree(tree: int):
         diagram += ' '*(2**(row-1)-1)  # blank at end of row
         diagram += '\n'  # line change at end of row
     return diagram
+
+
+def merge_tree_stats(height1: int, n_leaves1: int, height2: int, n_leaves2: int):
+    height = max(height1, height2) + 1
+    n_leaves = n_leaves1 + n_leaves2
+    return height, n_leaves
