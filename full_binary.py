@@ -24,34 +24,31 @@ def merge_trees(tree1: int, tree2: int):
 def split_tree(tree: int):
     if tree == 0:
         return None, None
-    elif tree == 1:
+    if tree == 1:
         return 0, 0
     h = height_of_tree(tree)
     n = tree - n_trees[h-1]
     for m in range(n_trees[h-2], n_trees[h-1]):
         if n <= m:
             return m, n
-        else:
-            n -= m+1
+        n -= m+1
 
 
 def height_of_tree(tree: int):
     # generation-1 (natal = 1st gen)
     if tree in n_trees:
         return n_trees.index(tree) + 1
-    else:
-        return sorted([tree] + n_trees).index(tree)
+    return sorted([tree] + n_trees).index(tree)
 
 
 def height_of_tree_recursive(tree: int):
     # generation-1
     if tree == 0:
         return 0
-    else:
-        m, n = split_tree(tree)
-        # return max(height_of_tree(m), height_of_tree(n)) + 1
-        # max(h(m),h(n)) = h(m) as m>=n and h is non-decreasing
-        return height_of_tree(m) + 1
+    m, _ = split_tree(tree)
+    # return max(height_of_tree(m), height_of_tree(n)) + 1
+    # max(h(m),h(n)) = h(m) as m>=n and h is non-decreasing
+    return height_of_tree(m) + 1
 
 
 def n_leaves_in_tree(tree: int):
@@ -85,9 +82,9 @@ def show_tree(tree: int):
         no_node = ' '*len(node)
         spacing = ' '*(len(node)-2)
         diagram += ' '*(2**(row-1)-1)  # blank at start of row
-        for i in range(len(components)):
-            new_components.extend(split_tree(components[i]))
-            if components[i]:
+        for i, component in enumerate(components):
+            new_components.extend(split_tree(component))
+            if component:
                 diagram += node
             else:
                 diagram += no_node
