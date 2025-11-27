@@ -11,3 +11,7 @@ For example: $\frac{3(3+1)}{2}+2+1=9$
 ┌┴┐ ┌┴┐   ┌┴┐       ┌┴┐ ┌┴┐ ┌┴┐    
    3         2             9
 ```
+## Statistics
+<p float="left">
+  <img src="plot.png" alt="statistics_plot"/>
+</p>
